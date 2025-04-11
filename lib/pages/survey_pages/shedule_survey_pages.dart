@@ -1,15 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:school_survey/pages/add_survey.dart';
 
 class ScheduledSurveysPage extends StatelessWidget {
   const ScheduledSurveysPage({super.key});
+  
 
   Future<void> _deleteSurvey(BuildContext context, DocumentSnapshot doc) async {
+    final user = FirebaseAuth.instance.currentUser;
     try {
-      await FirebaseFirestore.instance.collection('withheld_surveys').add(doc.data() as Map<String, dynamic>);
-      await FirebaseFirestore.instance.collection('surveys').doc(doc.id).delete();
+      await FirebaseFirestore.instance.collection('users').doc(user?.uid).collection('withheld_surveys').add(doc.data() as Map<String, dynamic>);
+      await FirebaseFirestore.instance.collection('users').doc(user?.uid).collection('surveys').doc(doc.id).delete();
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Survey moved to withheld")),
@@ -23,10 +26,11 @@ class ScheduledSurveysPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
     return Container(
       color: Colors.black,
       child: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
+        stream: FirebaseFirestore.instance.collection('users').doc(user?.uid)
             .collection('surveys')
             .orderBy('created_at', descending: true)
             .snapshots(),

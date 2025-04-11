@@ -114,7 +114,8 @@ class _AddSurveyPageState extends State<AddSurveyPage> {
 
     try {
       if (widget.isEditing && widget.surveyData != null) {
-        await FirebaseFirestore.instance
+        final user = FirebaseAuth.instance.currentUser;
+        await FirebaseFirestore.instance.collection('users').doc(user?.uid)
             .collection('surveys')
             .doc(widget.surveyData!.id)
             .update(surveyData);
@@ -124,8 +125,9 @@ class _AddSurveyPageState extends State<AddSurveyPage> {
           textColor: Colors.white,
         );
       } else {
+        final user = FirebaseAuth.instance.currentUser;
         surveyData['created_at'] = Timestamp.now();
-        await FirebaseFirestore.instance.collection('surveys').add(surveyData);
+        await FirebaseFirestore.instance.collection('users').doc(user?.uid).collection('surveys').add(surveyData);
         Fluttertoast.showToast(
           msg: 'Survey saved',
           backgroundColor: Colors.green,

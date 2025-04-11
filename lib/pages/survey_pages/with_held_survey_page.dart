@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class WithheldSurveysPage extends StatelessWidget {
@@ -6,10 +7,11 @@ class WithheldSurveysPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       backgroundColor: Colors.black,
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
+        stream: FirebaseFirestore.instance.collection('users').doc(user?.uid)
             .collection('withheld_surveys')
             .orderBy('created_at', descending: true)
             .snapshots(),

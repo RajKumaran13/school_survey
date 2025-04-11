@@ -1,5 +1,6 @@
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hive/hive.dart';
@@ -66,9 +67,10 @@ class _CommencementPageState extends State<CommencementPage> {
     _formKey.currentState!.save();
     
     try {
-      final surveyDoc = _firestore.collection('surveyData').doc();
+      final user = FirebaseAuth.instance.currentUser;
+      final surveyDoc = _firestore.collection('users').doc(user?.uid).collection('surveyData').doc();
       
-      await surveyDoc.collection('generalData').doc('info').set(
+      await surveyDoc.collection('users').doc(user?.uid).collection('generalData').doc('info').set(
         _generalData.toMap(),
       );
       
