@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "841539008369",
+    "project_id": "school-survey-364d3",
+    "storage_bucket": "school-survey-364d3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841539008369:android:f6ce7ffc459ba54a05e8d0",
+        "android_client_info": {
+          "package_name": "com.example.school_survey"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQaDUdjqAZRgupFsGZVBBZobmJ10_hrng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
