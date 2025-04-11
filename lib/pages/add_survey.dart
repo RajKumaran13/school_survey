@@ -114,7 +114,7 @@ class _AddSurveyPageState extends State<AddSurveyPage> {
 
     try {
       if (widget.isEditing && widget.surveyData != null) {
-        await FirebaseFirestore.instance.
+        await FirebaseFirestore.instance
             .collection('surveys')
             .doc(widget.surveyData!.id)
             .update(surveyData);
