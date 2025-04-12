@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:school_survey/utils/colors.dart';
 
 class TopBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
@@ -20,14 +21,14 @@ class _TopBarState extends State<TopBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.purple,
+      backgroundColor: AppColors.primaryPurple,
       title: Text(
         widget.title,
-        style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w800),
+        style: const TextStyle(color: AppColors.primaryWhite, fontSize: 22, fontWeight: FontWeight.w800),
       ),
       actions: [
             PopupMenuButton<String>(
-              color: Colors.black,
+              color: AppColors.primaryBlack,
               icon: Row(
                 children: [
                   CircleAvatar(
@@ -53,11 +54,11 @@ class _TopBarState extends State<TopBar> {
               },
               itemBuilder:
                   (context) => [
-                    const PopupMenuItem(value: 'home', child: Text('Home',style: TextStyle(color: Colors.white),)),
+                    const PopupMenuItem(value: 'home', child: Text('Home',style: TextStyle(color: AppColors.primaryWhite),)),
                     
                     const PopupMenuItem(
                       value: 'signout',
-                      child: Text('Sign Out',style: TextStyle(color: Colors.white)),
+                      child: Text('Sign Out',style: TextStyle(color: AppColors.primaryWhite)),
                     ),
                   ],
             ),

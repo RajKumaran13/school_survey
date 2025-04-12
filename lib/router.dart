@@ -1,9 +1,9 @@
 import 'package:go_router/go_router.dart';
-import 'package:school_survey/pages/add_survey.dart';
-import 'package:school_survey/pages/commoncement_pages/commencement_page.dart';
-import 'package:school_survey/pages/landing_page.dart';
-import 'package:school_survey/pages/login_user.dart';
-import 'package:school_survey/pages/register_user.dart';
+import 'package:school_survey/features/add_survey_page/view/add_survey_page.dart';
+import 'package:school_survey/features/commencement_page/view/commencement_page.dart';
+import 'package:school_survey/features/landing_page/view/landing_page.dart';
+import 'package:school_survey/features/login_page/view/login_view.dart';
+import 'package:school_survey/features/register_page/view/register_view.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/',
