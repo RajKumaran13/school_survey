@@ -16,7 +16,7 @@ class ScheduledSurveysPage extends StatelessWidget {
     return Container(
       color: AppColors.primaryBlack,
       child: Observer(
-        builder: (_) {
+        builder: (_) { 
           if (store.errorMessage != null) {
             return Center(
               child: Text(
@@ -36,28 +36,31 @@ class ScheduledSurveysPage extends StatelessWidget {
           return StreamBuilder<QuerySnapshot>(
             stream: stream,
             builder: (context, snapshot) {
-              if (snapshot.hasError)
+              if (snapshot.hasError) {
                 return const Center(
                   child: Text(
                     'Error loading surveys',
                     style: TextStyle(color: AppColors.primaryWhite),
                   ),
                 );
-              if (!snapshot.hasData)
+              }
+              if (!snapshot.hasData) {
                 return const Center(
                   child: CircularProgressIndicator(
                     color: AppColors.primaryPurple,
                   ),
                 );
+              }
 
               final docs = snapshot.data!.docs;
-              if (docs.isEmpty)
+              if (docs.isEmpty) {
                 return const Center(
                   child: Text(
                     'No scheduled surveys found.',
                     style: TextStyle(color: AppColors.primaryWhite),
                   ),
                 );
+              }
 
               return ListView.separated(
                 padding: const EdgeInsets.all(12),
