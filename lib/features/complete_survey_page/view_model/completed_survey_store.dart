@@ -1,4 +1,3 @@
-import 'dart:convert';  // Add this import to decode the JSON string.
 import 'package:mobx/mobx.dart';
 import 'package:school_survey/features/commencement_page/model/schood.dart';
 import 'package:shared_preferences/shared_preferences.dart';
